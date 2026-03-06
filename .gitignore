@@ -1,0 +1,22 @@
+# ROS2 specific
+build/
+install/
+log/
+.catkin_workspace
+.item_lock
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code
+.vscode/
+
+# Ignore artifact folder
+.gemini/
+brain/
+task.md
+run_tutorial.md
+M3Pro_Simulation_Tutorial.md

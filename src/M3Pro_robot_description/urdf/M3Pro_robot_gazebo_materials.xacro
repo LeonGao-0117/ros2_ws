@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="set_material" params="ref mat">
+    <gazebo reference="${ref}">
+      <material>${mat}</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="wheel_friction" params="ref">
+    <gazebo reference="${ref}">
+      <material>Gazebo/FlatBlack</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+      <fdir1>1 0 0</fdir1>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gripper_link_props" params="ref mat:=Gazebo/White">
+    <gazebo reference="${ref}">
+      <material>${mat}</material>
+      <self_collide>false</self_collide>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="gazebo_materials">
+    
+    <xacro:set_material ref="base_link"       mat="Gazebo/Grey" />
+    <xacro:set_material ref="arm_base_Link"   mat="Gazebo/Green" />
+    <xacro:set_material ref="arm1"            mat="Gazebo/White" />
+    <xacro:set_material ref="arm2"            mat="Gazebo/White" />
+    <xacro:set_material ref="arm3"            mat="Gazebo/White" />
+    <xacro:set_material ref="arm4"            mat="Gazebo/White" />
+    <xacro:set_material ref="arm5"            mat="Gazebo/DarkGrey" />
+    <xacro:set_material ref="Gripping"        mat="Gazebo/White" />
+    <xacro:set_material ref="DCW2"            mat="Gazebo/DarkGrey" />
+    <xacro:set_material ref="Camera"          mat="Gazebo/Grey" />
+
+    <xacro:gripper_link_props ref="rlink1" />
+    <xacro:gripper_link_props ref="llink1" />
+    <xacro:gripper_link_props ref="rlink3" />
+    <xacro:gripper_link_props ref="llink3" />
+
+    <gazebo reference="rlink2">
+      <material>Gazebo/White</material>
+      <self_collide>false</self_collide>
+      <mu1>100.0</mu1>
+      <mu2>100.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+    </gazebo>
+    
+    <gazebo reference="llink2">
+      <material>Gazebo/White</material>
+      <self_collide>false</self_collide>
+      <mu1>100.0</mu1>
+      <mu2>100.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+    </gazebo>
+
+    <xacro:wheel_friction ref="lwheel1" />
+    <xacro:wheel_friction ref="lwheel2" />
+    <xacro:wheel_friction ref="rwheel1" />
+    <xacro:wheel_friction ref="rwheel2" />
+
+  </xacro:macro>
+</robot>

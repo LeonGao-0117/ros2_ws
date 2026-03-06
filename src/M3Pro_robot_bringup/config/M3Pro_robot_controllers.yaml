@@ -1,0 +1,66 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
+      type: position_controllers/GripperActionController
+
+    mecanum_controller:
+      type: mecanum_drive_controller/MecanumDriveController
+
+arm_controller:
+  ros__parameters:
+    joints:
+      - arm1_Joint
+      - arm2_Joint
+      - arm3_Joint
+      - arm4_Joint
+      - arm5_Joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+gripper_controller:
+  ros__parameters:
+    joint: rlink1_Joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+mecanum_controller:
+  ros__parameters:
+    front_left_wheel_command_joint_name: "lwheel1_Joint"
+    front_right_wheel_command_joint_name: "rwheel1_Joint"
+    rear_left_wheel_command_joint_name: "lwheel2_Joint"
+    rear_right_wheel_command_joint_name: "rwheel2_Joint"
+
+    kinematics:
+      wheels_radius: 0.04
+      wheels_x_separation: 0.159    # Front and rear wheelbase
+      wheels_y_separation: 0.1955   # Left and right wheel track
+
+    odom_frame_id: odom
+    base_frame_id: base_footprint # If TF error occurs after startup, try changing to base_link
+
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+
+    use_stamped_vel: false
+    cmd_vel_timeout: 0.5
+
+    pose_covariance_diagonal: [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
