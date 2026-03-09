@@ -26,8 +26,12 @@ sudo apt install ros-humble-controller-manager
 sudo apt install ros-humble-ros2-control
 sudo apt install ros-humble-ros2-controllers
 
-# 3. Install bridge plugin between Gazebo and ros2_control (essential for simulation)
-sudo apt install ros-humble-gazebo-ros-pkgs
+
+# 3. Install Gazebo Fortress exclusive plugin for controllers (Core!)
+sudo apt install ros-humble-ign-ros2-control
+
+# Install Gazebo Fortress integration tools with ROS (including Bridge)
+sudo apt install ros-humble-ros-gz
 
 # 4. Install Joint State Publisher GUI (used to control joints via sliders in RViz)
 sudo apt install ros-humble-joint-state-publisher-gui
@@ -285,8 +289,11 @@ sudo apt install ros-humble-controller-manager
 sudo apt install ros-humble-ros2-control
 sudo apt install ros-humble-ros2-controllers
 
-# 3. 安装 Gazebo 与 ros2_control 的桥接插件 (仿真必用)
-sudo apt install ros-humble-gazebo-ros-pkgs
+# 3. 安装 Gazebo Fortress与控制器的专属插件 (核心！)
+sudo apt install ros-humble-ign-ros2-control
+
+# 安装 Gazebo Fortress与 ROS 的集成工具 (含 Bridge)
+sudo apt install ros-humble-ros-gz
 
 # 4. 安装 Joint State Publisher GUI (用于在 RViz 中通过滑块控制关节)
 sudo apt install ros-humble-joint-state-publisher-gui
