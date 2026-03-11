@@ -37,13 +37,13 @@
     <xacro:lidar_ray frame_name="laser0_frame" topic_name="scan" sensor_name="lidar_front"/>
     <xacro:lidar_ray frame_name="laser1_frame" topic_name="scan_back" sensor_name="lidar_rear"/>
 
-    <gazebo reference="Camera">
+    <gazebo reference="DCW2">
       <sensor type="rgbd_camera" name="depth_camera">
         <always_on>true</always_on>
         <update_rate>15.0</update_rate> 
         <visualize>true</visualize>
         <topic>camera</topic> 
-        <gz_frame_id>Camera</gz_frame_id>
+        <gz_frame_id>DCW2</gz_frame_id>
         <camera name="camera">
           <horizontal_fov>1.04719755</horizontal_fov>
           <image>
