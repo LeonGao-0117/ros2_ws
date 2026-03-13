@@ -110,7 +110,7 @@ def generate_launch_description():
             'input_topic': '/cmd_vel',
             'output_topic': '/mecanum_controller/reference_unstamped',
             'type': 'geometry_msgs/msg/Twist',
-            'qos_overrides./cmd_vel.subscription.reliability': 'best_effort',
+            'qos_overrides./cmd_vel.subscription.reliability': 'reliable',
             'qos_overrides./cmd_vel.subscription.durability': 'volatile'
         }]
     )

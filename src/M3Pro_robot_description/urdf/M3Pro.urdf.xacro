@@ -21,15 +21,8 @@
       <origin
         xyz="-0.0230945655800945 -0.000624366433481225 0.0924263074305092"
         rpy="0 0 0" />
-      <mass
-        value="0.870994544286568" />
-      <inertia
-        ixx="0.000924360334406296"
-        ixy="1.83790425775432E-06"
-        ixz="-6.57330050239333E-05"
-        iyy="0.000965356496722674"
-        iyz="4.19061203028733E-07"
-        izz="0.00166592475388463" />
+      <mass value="4.0" />
+      <inertia ixx="0.0097" ixy="0.0" ixz="0.0" iyy="0.0145" iyz="0.0" izz="0.0218" />
     </inertial>
     <visual>
       <origin
@@ -85,7 +78,8 @@
     <collision>
       <origin xyz="0 0 0.016" rpy="0 0 0" />
       <geometry>
-        <box size="0.04 0.04 0.033"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/arm1.STL" />
       </geometry>
     </collision>
   </link>
@@ -140,7 +134,8 @@
     <collision>
       <origin xyz="0 0 0.041" rpy="0 0 0" />
       <geometry>
-        <box size="0.035 0.04 0.083"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/arm2.STL" />
       </geometry>
     </collision>
   </link>
@@ -195,7 +190,8 @@
     <collision>
       <origin xyz="0 0 0.041" rpy="0 0 0" />
       <geometry>
-        <box size="0.035 0.04 0.083"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/arm3.STL" />
       </geometry>
     </collision>
   </link>
@@ -250,7 +246,8 @@
     <collision>
       <origin xyz="0 0 0.037" rpy="0 0 0" />
       <geometry>
-        <box size="0.05 0.04 0.075"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/arm4.STL" />
       </geometry>
     </collision>
   </link>
@@ -305,7 +302,8 @@
     <collision>
       <origin xyz="0.01 0 0.03" rpy="0 0 0" />
       <geometry>
-        <box size="0.04 0.03 0.06"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/arm5.STL" />
       </geometry>
     </collision>
   </link>
@@ -360,7 +358,8 @@
     <collision>
       <origin xyz="0.008 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.03 0.008 0.004"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/rlink1.STL" />
       </geometry>
     </collision>
   </link>
@@ -415,7 +414,8 @@
     <collision>
       <origin xyz="0.023 0.006 -0.005" rpy="0 0 0" />
       <geometry>
-        <box size="0.045 0.015 0.01"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/rlink2.STL" />
       </geometry>
     </collision>
   </link>
@@ -469,7 +469,8 @@
     <collision>
       <origin xyz="0.009 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.03 0.008 0.004"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/llink1.STL" />
       </geometry>
     </collision>
   </link>
@@ -523,7 +524,8 @@
     <collision>
       <origin xyz="0.023 -0.006 -0.005" rpy="0 0 0" />
       <geometry>
-        <box size="0.045 0.015 0.01"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/llink2.STL" />
       </geometry>
     </collision>
   </link>
@@ -577,7 +579,8 @@
     <collision>
       <origin xyz="0.015 0 -0.003" rpy="0 0 0" />
       <geometry>
-        <box size="0.03 0.004 0.006"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/rlink3.STL" />
       </geometry>
     </collision>
   </link>
@@ -631,7 +634,8 @@
     <collision>
       <origin xyz="0.015 0 -0.003" rpy="0 0 0" />
       <geometry>
-        <box size="0.03 0.004 0.006"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/llink3.STL" />
       </geometry>
     </collision>
   </link>
@@ -685,7 +689,8 @@
     <collision>
       <origin xyz="-0.065 0 -0.002" rpy="0 0 0" />
       <geometry>
-        <box size="0.13 0.015 0.006"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/Gripping.STL" />
       </geometry>
     </collision>
   </link>
@@ -735,7 +740,8 @@
     <collision>
       <origin xyz="-0.001 -0.001 -0.002" rpy="0 0 0" />
       <geometry>
-        <box size="0.02 0.06 0.06"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/DCW2.STL" />
       </geometry>
     </collision>
   </link>
@@ -785,7 +791,8 @@
     <collision>
       <origin xyz="-0.005 0.017 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.025 0.09 0.025"/>
+        <mesh
+          filename="package://M3Pro_robot_description/meshes/Camera.STL" />
       </geometry>
     </collision>
   </link>
@@ -1028,17 +1035,15 @@
     type="continuous">
     <origin
       xyz="0.0775753787975409 0.09775 0.0399999999999998"
-      rpy="-1.5707963267949 0 0" />
+      rpy="1.5707963267949 0 0" />
     <parent
       link="base_link" />
     <child
       link="lwheel1" />
     <axis
-      xyz="0 0 1" />
-    <limit
-      effort="1.5"
-      velocity="30.0" />
-    <dynamics damping="0.01" friction="0.1"/>
+      xyz="0 0 -1" />
+    <dynamics damping="0.3" friction="0.3" />
+    <limit effort="15.0" velocity="30.0" />
   </joint>
   <link
     name="lwheel2">
@@ -1082,17 +1087,15 @@
     type="continuous">
     <origin
       xyz="-0.0814246212024597 0.0977499999999995 0.0399976951545867"
-      rpy="-1.5707963267949 0 0" />
+      rpy="1.5707963267949 0 0" />
     <parent
       link="base_link" />
     <child
       link="lwheel2" />
     <axis
-      xyz="0 0 1" />
-    <limit
-      effort="1.5"
-      velocity="30.0" />
-    <dynamics damping="0.01" friction="0.1"/>
+      xyz="0 0 -1" />
+    <dynamics damping="0.3" friction="0.3" />
+    <limit effort="15.0" velocity="30.0" />
   </joint>
   <link
     name="rwheel1">
@@ -1143,10 +1146,8 @@
       link="rwheel1" />
     <axis
       xyz="0 0 1" />
-    <limit
-      effort="1.5"
-      velocity="30.0" />
-    <dynamics damping="0.01" friction="0.1"/>
+    <dynamics damping="0.3" friction="0.3" />
+    <limit effort="15.0" velocity="30.0" />
   </joint>
   <link
     name="rwheel2">
@@ -1197,10 +1198,8 @@
       link="rwheel2" />
     <axis
       xyz="0 0 1" />
-    <limit
-      effort="1.5"
-      velocity="30.0" />
-    <dynamics damping="0.01" friction="0.1"/>
+    <dynamics damping="0.3" friction="0.3" />
+    <limit effort="15.0" velocity="30.0" />
   </joint>
   <link
     name="arm_base_Link">
@@ -1226,6 +1225,7 @@
         <mesh
           filename="package://M3Pro_robot_description/meshes/arm_base_Link.STL" />
       </geometry>
+
       <material
         name="">
         <color
