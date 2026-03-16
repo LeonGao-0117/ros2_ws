@@ -45,6 +45,10 @@ gripper_controller:
     state_interfaces:
       - position
       - velocity
+    goal_tolerance: 0.05
+    max_velocity: 1.0
+    stall_velocity_threshold: 0.001
+    stall_timeout: 3.0
 
 # TODO: Revert to mecanum_controller config when switching back to mecanum drive
 diff_drive_controller:

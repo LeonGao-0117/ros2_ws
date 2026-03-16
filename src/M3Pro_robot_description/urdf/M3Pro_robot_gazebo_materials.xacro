@@ -45,10 +45,20 @@
 
     <gazebo reference="rlink2">
       <material>Gazebo/White</material>
+      <self_collide>false</self_collide>
+      <mu1>100.0</mu1>
+      <mu2>100.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
     </gazebo>
     
     <gazebo reference="llink2">
       <material>Gazebo/White</material>
+      <self_collide>false</self_collide>
+      <mu1>100.0</mu1>
+      <mu2>100.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
     </gazebo>
 
     <xacro:wheel_friction ref="lwheel1" />
