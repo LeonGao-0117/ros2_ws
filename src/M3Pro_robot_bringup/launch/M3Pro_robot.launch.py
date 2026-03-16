@@ -95,12 +95,12 @@ def generate_launch_description():
     load_joint_state = create_controller_spawner('joint_state_broadcaster', 4.0)
     load_arm_controller = create_controller_spawner('arm_controller', 6.0)
     load_gripper_controller = create_controller_spawner('gripper_controller', 8.0)
-    load_mecanum_controller = create_controller_spawner('mecanum_controller', 10.0)
+    # TODO: Revert to 'mecanum_controller' when switching back to mecanum drive
+    load_diff_drive_controller = create_controller_spawner('diff_drive_controller', 10.0)
 
     # ========================== Core Modifications ==========================
-    # 9. Topic relay node (Relay)
-    # Since the spawner's remap doesn't work, we directly start a relay node
-    # It will continuously forward /cmd_vel messages to the topic listened by the controller
+    # 9. Topic relay: /cmd_vel -> diff_drive_controller's unstamped input
+    #    TODO: Revert output_topic to '/mecanum_controller/reference_unstamped' for mecanum
     cmd_vel_relay = Node(
         package='topic_tools',
         executable='relay',
@@ -108,9 +108,9 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'input_topic': '/cmd_vel',
-            'output_topic': '/mecanum_controller/reference_unstamped',
+            'output_topic': '/diff_drive_controller/cmd_vel_unstamped',
             'type': 'geometry_msgs/msg/Twist',
-            'qos_overrides./cmd_vel.subscription.reliability': 'reliable',
+            'qos_overrides./cmd_vel.subscription.reliability': 'best_effort',
             'qos_overrides./cmd_vel.subscription.durability': 'volatile'
         }]
     )
@@ -137,7 +137,7 @@ def generate_launch_description():
         load_joint_state,
         load_arm_controller,
         load_gripper_controller,
-        load_mecanum_controller,
-        cmd_vel_relay,  # Ensure this node is added
+        load_diff_drive_controller,
+        cmd_vel_relay,
         rviz,
     ])
