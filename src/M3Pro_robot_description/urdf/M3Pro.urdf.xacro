@@ -774,6 +774,7 @@
         iyz="2.26188772216957E-09"
         izz="5.78331989998345E-06" />
     </inertial>
+    <!-- visual/collision removed: avoid duplicate camera with DCW2 (depth_camera link)
     <visual>
       <origin
         xyz="0 0 0"
@@ -794,7 +795,7 @@
         <mesh
           filename="package://M3Pro_robot_description/meshes/Camera.STL" />
       </geometry>
-    </collision>
+    </collision> -->
   </link>
   <joint
     name="Camera_Joint"
