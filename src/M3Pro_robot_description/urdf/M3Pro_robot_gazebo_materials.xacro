@@ -1,15 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="set_material" params="ref mat">
+  <xacro:macro name="gz_material" params="ref r g b a:=1.0">
     <gazebo reference="${ref}">
-      <material>${mat}</material>
+      <visual>
+        <material>
+          <ambient>${r} ${g} ${b} ${a}</ambient>
+          <diffuse>${r} ${g} ${b} ${a}</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
     </gazebo>
   </xacro:macro>
 
   <xacro:macro name="wheel_friction" params="ref">
     <gazebo reference="${ref}">
-      <material>Gazebo/FlatBlack</material>
+      <visual>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
       <mu1>1.5</mu1>
       <mu2>1.5</mu2>
       <kp>1000000.0</kp>
@@ -18,25 +30,34 @@
     </gazebo>
   </xacro:macro>
 
-  <xacro:macro name="gripper_link_props" params="ref mat:=Gazebo/White">
+  <xacro:macro name="gripper_link_props" params="ref r:=1.0 g:=0.9 b:=0.0">
     <gazebo reference="${ref}">
-      <material>${mat}</material>
+      <visual>
+        <material>
+          <ambient>${r} ${g} ${b} 1</ambient>
+          <diffuse>${r} ${g} ${b} 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
       <self_collide>false</self_collide>
     </gazebo>
   </xacro:macro>
 
   <xacro:macro name="gazebo_materials">
-    
-    <xacro:set_material ref="base_link"       mat="Gazebo/Grey" />
-    <xacro:set_material ref="arm_base_Link"   mat="Gazebo/Green" />
-    <xacro:set_material ref="arm1"            mat="Gazebo/White" />
-    <xacro:set_material ref="arm2"            mat="Gazebo/White" />
-    <xacro:set_material ref="arm3"            mat="Gazebo/White" />
-    <xacro:set_material ref="arm4"            mat="Gazebo/White" />
-    <xacro:set_material ref="arm5"            mat="Gazebo/DarkGrey" />
-    <xacro:set_material ref="Gripping"        mat="Gazebo/White" />
-    <xacro:set_material ref="DCW2"            mat="Gazebo/DarkGrey" />
-    <xacro:set_material ref="Camera"          mat="Gazebo/Grey" />
+
+    <xacro:gz_material ref="base_link"       r="0.75" g="0.75" b="0.78" />
+    <xacro:gz_material ref="arm_base_Link"   r="0.0" g="0.63" b="0.24" />
+    <xacro:gz_material ref="arm1"            r="1.0" g="0.5" b="0.0" />
+    <xacro:gz_material ref="arm2"            r="0.95" g="0.95" b="0.95" />
+    <xacro:gz_material ref="arm3"            r="0.3" g="0.7" b="1.0" />
+    <xacro:gz_material ref="arm4"            r="0.95" g="0.95" b="0.95" />
+    <xacro:gz_material ref="arm5"            r="1.0" g="0.5" b="0.0" />
+    <xacro:gz_material ref="Gripping"        r="1.0" g="0.9" b="0.0" />
+    <xacro:gz_material ref="DCW2"            r="0.0" g="0.6" b="1.0" />
+    <xacro:gz_material ref="Camera"          r="0.15" g="0.15" b="0.15" />
+    <xacro:gz_material ref="imu_frame"       r="0.9" g="0.1" b="0.1" />
+    <xacro:gz_material ref="laser0_frame"    r="0.0" g="1.0" b="0.0" />
+    <xacro:gz_material ref="laser1_frame"    r="0.8" g="0.0" b="0.8" />
 
     <xacro:gripper_link_props ref="rlink1" />
     <xacro:gripper_link_props ref="llink1" />
@@ -44,7 +65,13 @@
     <xacro:gripper_link_props ref="llink3" />
 
     <gazebo reference="rlink2">
-      <material>Gazebo/White</material>
+      <visual>
+        <material>
+          <ambient>0.9 0.1 0.1 1</ambient>
+          <diffuse>0.9 0.1 0.1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
       <self_collide>false</self_collide>
       <mu1>100.0</mu1>
       <mu2>100.0</mu2>
@@ -53,7 +80,13 @@
     </gazebo>
     
     <gazebo reference="llink2">
-      <material>Gazebo/White</material>
+      <visual>
+        <material>
+          <ambient>0.9 0.1 0.1 1</ambient>
+          <diffuse>0.9 0.1 0.1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
       <self_collide>false</self_collide>
       <mu1>100.0</mu1>
       <mu2>100.0</mu2>

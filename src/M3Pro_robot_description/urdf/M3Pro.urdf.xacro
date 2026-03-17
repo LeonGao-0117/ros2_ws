@@ -33,9 +33,9 @@
           filename="package://M3Pro_robot_description/meshes/base_link.STL" />
       </geometry>
       <material
-        name="">
+        name="silver_grey">
         <color
-          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+          rgba="0.75 0.75 0.78 1" />
       </material>
     </visual>
     <collision>
@@ -70,9 +70,9 @@
           filename="package://M3Pro_robot_description/meshes/arm1.STL" />
       </geometry>
       <material
-        name="">
+        name="orange">
         <color
-          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+          rgba="1.0 0.5 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -126,9 +126,9 @@
           filename="package://M3Pro_robot_description/meshes/arm2.STL" />
       </geometry>
       <material
-        name="">
+        name="white">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.95 0.95 0.95 1" />
       </material>
     </visual>
     <collision>
@@ -182,9 +182,9 @@
           filename="package://M3Pro_robot_description/meshes/arm3.STL" />
       </geometry>
       <material
-        name="">
+        name="skyblue">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.3 0.7 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -238,9 +238,9 @@
           filename="package://M3Pro_robot_description/meshes/arm4.STL" />
       </geometry>
       <material
-        name="">
+        name="white">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.95 0.95 0.95 1" />
       </material>
     </visual>
     <collision>
@@ -294,9 +294,9 @@
           filename="package://M3Pro_robot_description/meshes/arm5.STL" />
       </geometry>
       <material
-        name="">
+        name="orange">
         <color
-          rgba="0.203921568627451 0.203921568627451 0.203921568627451 1" />
+          rgba="1.0 0.5 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -350,9 +350,9 @@
           filename="package://M3Pro_robot_description/meshes/rlink1.STL" />
       </geometry>
       <material
-        name="">
+        name="yellow">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="1.0 0.9 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -406,9 +406,9 @@
           filename="package://M3Pro_robot_description/meshes/rlink2.STL" />
       </geometry>
       <material
-        name="">
+        name="red">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.9 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -461,9 +461,9 @@
           filename="package://M3Pro_robot_description/meshes/llink1.STL" />
       </geometry>
       <material
-        name="">
+        name="yellow">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="1.0 0.9 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -516,9 +516,9 @@
           filename="package://M3Pro_robot_description/meshes/llink2.STL" />
       </geometry>
       <material
-        name="">
+        name="red">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.9 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -571,9 +571,9 @@
           filename="package://M3Pro_robot_description/meshes/rlink3.STL" />
       </geometry>
       <material
-        name="">
+        name="yellow">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="1.0 0.9 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -626,9 +626,9 @@
           filename="package://M3Pro_robot_description/meshes/llink3.STL" />
       </geometry>
       <material
-        name="">
+        name="yellow">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="1.0 0.9 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -681,9 +681,9 @@
           filename="package://M3Pro_robot_description/meshes/Gripping.STL" />
       </geometry>
       <material
-        name="">
+        name="yellow">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="1.0 0.9 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -732,9 +732,9 @@
           filename="package://M3Pro_robot_description/meshes/DCW2.STL" />
       </geometry>
       <material
-        name="">
+        name="cyan_blue">
         <color
-          rgba="0.203921568627451 0.203921568627451 0.203921568627451 1" />
+          rgba="0.0 0.6 1.0 1" />
       </material>
     </visual>
     <collision>
@@ -839,9 +839,9 @@
         <box size="0.01 0.01 0.01"/>
       </geometry>
       <material
-        name="">
+        name="red">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.9 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -899,9 +899,9 @@
         <box size="0.01 0.01 0.01"/>
       </geometry>
       <material
-        name="">
+        name="lime_green">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.0 1.0 0.0 1" />
       </material>
     </visual>
     <collision>
@@ -959,9 +959,9 @@
         <box size="0.01 0.01 0.01"/>
       </geometry>
       <material
-        name="">
+        name="purple">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.8 0.0 0.8 1" />
       </material>
     </visual>
     <collision>
@@ -1019,9 +1019,9 @@
           filename="package://M3Pro_robot_description/meshes/lwheel1.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.1 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -1071,9 +1071,9 @@
           filename="package://M3Pro_robot_description/meshes/lwheel2.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.1 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -1123,9 +1123,9 @@
           filename="package://M3Pro_robot_description/meshes/rwheel1.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.1 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
@@ -1175,9 +1175,9 @@
           filename="package://M3Pro_robot_description/meshes/rwheel2.STL" />
       </geometry>
       <material
-        name="">
+        name="black">
         <color
-          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+          rgba="0.1 0.1 0.1 1" />
       </material>
     </visual>
     <collision>
