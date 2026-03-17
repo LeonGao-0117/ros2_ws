@@ -49,7 +49,7 @@ sudo apt install ros-humble-teleop-twist-keyboard
 
 ### 2. Compile and Configure Workspace
 
-Note that the M3Pro robot mainly contains two packages: `M3Pro_robot_description` and `M3Pro_robot_bringup`.
+Note that this workspace mainly contains three packages: `M3Pro_robot_description`, `M3Pro_robot_bringup`, and `aws_robomaker_hospital_world`.
 
 ```bash
 # 1. Enter the root directory of the workspace
@@ -87,9 +87,14 @@ ros2 launch M3Pro_robot_description display.launch.py
 
 This function will start a physical simulation environment powered by Gazebo, loading the control plugins (Mecanum wheel chassis and robotic arm), and triggering simulations for sensors like depth camera, LiDAR, etc.
 
-**Run Command:**
+**Run Command (default world):**
 ```bash
 ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py
+```
+
+**Run Command (AWS hospital world):**
+```bash
+ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=hospital
 ```
 
 **The system will complete the startup automatically following these steps:**
@@ -259,7 +264,7 @@ ros2 topic echo /scan
 | Odometry           | Topic            | `/odom` |
 | Front LiDAR        | Topic (LaserScan) | `/scan` |
 | Rear LiDAR         | Topic (LaserScan) | `/scan_back` |
-| Camera Image       | Topic (Image)    | `/camera/image_raw` |
+| Camera Image       | Topic (Image)    | `/camera/image` |
 | Camera Info        | Topic            | `/camera/camera_info` |
 
 Robotic arm has 5 joints: `arm1_Joint` ~ `arm5_Joint`. Control interface is **position**, unit is **rad**.
@@ -311,7 +316,7 @@ sudo apt install ros-humble-teleop-twist-keyboard
 
 ### 2. 编译并配置工作空间
 
-确保由于 M3Pro 机器人有两个主要的功能包：`M3Pro_robot_description` 和 `M3Pro_robot_bringup`。
+当前工作空间主要包含三个功能包：`M3Pro_robot_description`、`M3Pro_robot_bringup` 和 `aws_robomaker_hospital_world`。
 
 ```bash
 # 1. 进入工作空间根目录
@@ -349,9 +354,14 @@ ros2 launch M3Pro_robot_description display.launch.py
 
 此功能将启动由 Gazebo 驱动的物理仿真环境，加载了控制插件（麦克纳姆轮底盘和机械臂），并且启动了深度相机、激光雷达等传感器仿真。
 
-**运行命令：**
+**运行命令（默认世界）：**
 ```bash
 ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py
+```
+
+**运行命令（AWS 医院世界）：**
+```bash
+ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=hospital
 ```
 
 **系统将按照以下流程自动完成启动：**
@@ -521,7 +531,7 @@ ros2 topic echo /scan
 | 里程计 | 话题 | `/odom` |
 | 前雷达 | 话题 (LaserScan) | `/scan` |
 | 后雷达 | 话题 (LaserScan) | `/scan_back` |
-| 相机图像 | 话题 (Image) | `/camera/image_raw` |
+| 相机图像 | 话题 (Image) | `/camera/image` |
 | 相机内参 | 话题 | `/camera/camera_info` |
 
 机械臂拥有 5 个关节：`arm1_Joint` ~ `arm5_Joint`。控制接口为 **position**，单位为 **rad**。
