@@ -49,7 +49,7 @@ sudo apt install ros-humble-teleop-twist-keyboard
 
 ### 2. Compile and Configure Workspace
 
-Note that this workspace mainly contains three packages: `M3Pro_robot_description`, `M3Pro_robot_bringup`, and `aws_robomaker_hospital_world`.
+Note that this workspace mainly contains four packages: `M3Pro_robot_description`, `M3Pro_robot_bringup`, `aws_robomaker_hospital_world`, and `aws_robomaker_small_house_world`.
 
 ```bash
 # 1. Enter the root directory of the workspace
@@ -95,6 +95,11 @@ ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py
 **Run Command (AWS hospital world):**
 ```bash
 ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=hospital
+```
+
+**Run Command (AWS small house world):**
+```bash
+ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=small_house
 ```
 
 **The system will complete the startup automatically following these steps:**
@@ -316,7 +321,7 @@ sudo apt install ros-humble-teleop-twist-keyboard
 
 ### 2. 编译并配置工作空间
 
-当前工作空间主要包含三个功能包：`M3Pro_robot_description`、`M3Pro_robot_bringup` 和 `aws_robomaker_hospital_world`。
+当前工作空间主要包含四个功能包：`M3Pro_robot_description`、`M3Pro_robot_bringup`、`aws_robomaker_hospital_world` 和 `aws_robomaker_small_house_world`。
 
 ```bash
 # 1. 进入工作空间根目录
@@ -362,6 +367,11 @@ ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py
 **运行命令（AWS 医院世界）：**
 ```bash
 ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=hospital
+```
+
+**运行命令（AWS 小户型房屋世界）：**
+```bash
+ros2 launch M3Pro_robot_bringup M3Pro_robot.launch.py world:=small_house
 ```
 
 **系统将按照以下流程自动完成启动：**

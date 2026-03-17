@@ -33,6 +33,15 @@ def launch_setup(context, *args, **kwargs):
         except Exception:
             print('[WARN] aws_robomaker_hospital_world not found, falling back to default world')
             world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
+    elif world == 'small_house':
+        try:
+            pkg_small_house = get_package_share_directory('aws_robomaker_small_house_world')
+            world_path = os.path.join(pkg_small_house, 'worlds', 'small_house.sdf')
+            gz_resource_paths.append(os.path.join(pkg_small_house, 'models'))
+            gz_resource_paths.append(pkg_small_house)
+        except Exception:
+            print('[WARN] aws_robomaker_small_house_world not found, falling back to default world')
+            world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
     else:
         world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
 
@@ -63,14 +72,21 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={'gz_args': [f'-r {world_path}']}.items()
     )
 
-    # 6. Spawn robot
+    # 6. Spawn robot (per-world position — must avoid furniture collisions)
+    if world == 'small_house':
+        spawn_xyz = ['2.0', '1.0', '0.15']
+    elif world == 'hospital':
+        spawn_xyz = ['0.0', '3.0', '0.15']
+    else:
+        spawn_xyz = ['0.0', '0.0', '0.15']
+
     spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',
         arguments=[
             '-name', 'M3Pro',
             '-topic', 'robot_description',
-            '-x', '0', '-y', '10', '-z', '0.15'
+            '-x', spawn_xyz[0], '-y', spawn_xyz[1], '-z', spawn_xyz[2]
         ],
         output='screen',
     )
@@ -105,9 +121,9 @@ def launch_setup(context, *args, **kwargs):
             ]
         )
 
-    is_heavy_world = world in ('hospital',)
-    base_delay = 15.0 if is_heavy_world else 4.0
-    step = 4.0 if is_heavy_world else 2.0
+    is_heavy_world = world in ('hospital', 'small_house')
+    base_delay = 20.0 if is_heavy_world else 4.0
+    step = 5.0 if is_heavy_world else 2.0
 
     load_joint_state = create_controller_spawner('joint_state_broadcaster', base_delay)
     load_arm_controller = create_controller_spawner('arm_controller', base_delay + step)
@@ -170,7 +186,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'world',
             default_value='default',
-            description='World to load: "default" for M3pro_world, "hospital" for AWS hospital world'
+            description='World to load: "default" for M3pro_world, "hospital" for AWS hospital, "small_house" for AWS small house'
         ),
         OpaqueFunction(function=launch_setup),
     ])
