@@ -2,29 +2,42 @@ import os
 import time
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, TimerAction, SetEnvironmentVariable
+from launch.actions import (
+    IncludeLaunchDescription, TimerAction, SetEnvironmentVariable,
+    DeclareLaunchArgument, OpaqueFunction
+)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
-from launch.substitutions import Command
+from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.parameter_descriptions import ParameterValue
 
-def generate_launch_description():
-    # 0. Clean up resources
-    print("Cleaning up resources...")
-    os.system('pkill -9 gzserver; pkill -9 gzclient; pkill -9 ruby; pkill -9 robot_state_publisher; pkill -9 rviz2 > /dev/null 2>&1')
-    time.sleep(2.0)
 
-    # 1. Set package paths
+def launch_setup(context, *args, **kwargs):
+    world = LaunchConfiguration('world').perform(context)
+
     pkg_description = get_package_share_directory('M3Pro_robot_description')
-    pkg_bringup = get_package_share_directory('M3Pro_robot_bringup') 
-    
+    pkg_bringup = get_package_share_directory('M3Pro_robot_bringup')
+
     main_xacro_path = os.path.join(pkg_description, 'urdf', 'M3Pro_robot_main.xacro')
     rviz_config = os.path.join(pkg_description, 'rviz', 'M3Pro.rviz')
-    world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
-
-    # 2. Configure environment variables
     install_share_path = os.path.dirname(pkg_description)
-    
+
+    gz_resource_paths = [install_share_path]
+
+    if world == 'hospital':
+        try:
+            pkg_hospital = get_package_share_directory('aws_robomaker_hospital_world')
+            world_path = os.path.join(pkg_hospital, 'worlds', 'hospital.sdf')
+            gz_resource_paths.append(os.path.join(pkg_hospital, 'models'))
+            gz_resource_paths.append(os.path.join(pkg_hospital, 'fuel_models'))
+        except Exception:
+            print('[WARN] aws_robomaker_hospital_world not found, falling back to default world')
+            world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
+    else:
+        world_path = os.path.join(pkg_description, 'worlds', 'M3pro_world.sdf')
+
+    gz_resource_path_str = os.pathsep.join(gz_resource_paths)
+
     # 3. Parse Xacro
     robot_description_value = ParameterValue(
         Command(['xacro ', main_xacro_path]),
@@ -57,7 +70,7 @@ def generate_launch_description():
         arguments=[
             '-name', 'M3Pro',
             '-topic', 'robot_description',
-            '-x', '0', '-y', '0', '-z', '0.15'
+            '-x', '0', '-y', '10', '-z', '0.15'
         ],
         output='screen',
     )
@@ -92,11 +105,15 @@ def generate_launch_description():
             ]
         )
 
-    load_joint_state = create_controller_spawner('joint_state_broadcaster', 4.0)
-    load_arm_controller = create_controller_spawner('arm_controller', 6.0)
-    load_gripper_controller = create_controller_spawner('gripper_controller', 8.0)
+    is_heavy_world = world in ('hospital',)
+    base_delay = 15.0 if is_heavy_world else 4.0
+    step = 4.0 if is_heavy_world else 2.0
+
+    load_joint_state = create_controller_spawner('joint_state_broadcaster', base_delay)
+    load_arm_controller = create_controller_spawner('arm_controller', base_delay + step)
+    load_gripper_controller = create_controller_spawner('gripper_controller', base_delay + step * 2)
     # TODO: Revert to 'mecanum_controller' when switching back to mecanum drive
-    load_diff_drive_controller = create_controller_spawner('diff_drive_controller', 10.0)
+    load_diff_drive_controller = create_controller_spawner('diff_drive_controller', base_delay + step * 3)
 
     # ========================== Core Modifications ==========================
     # 9. Topic relay: /cmd_vel -> diff_drive_controller's unstamped input
@@ -126,10 +143,10 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
-    return LaunchDescription([
-        SetEnvironmentVariable('GZ_SIM_RESOURCE_PATH', install_share_path),
+    return [
+        SetEnvironmentVariable('GZ_SIM_RESOURCE_PATH', gz_resource_path_str),
         SetEnvironmentVariable('GZ_SIM_SYSTEM_PLUGIN_PATH', '/opt/ros/humble/lib'),
-        
+
         node_robot_state_publisher,
         bridge,
         gazebo,
@@ -140,4 +157,20 @@ def generate_launch_description():
         load_diff_drive_controller,
         cmd_vel_relay,
         rviz,
+    ]
+
+
+def generate_launch_description():
+    # 0. Clean up resources
+    print("Cleaning up resources...")
+    os.system('pkill -9 gzserver; pkill -9 gzclient; pkill -9 ruby; pkill -9 robot_state_publisher; pkill -9 rviz2 > /dev/null 2>&1')
+    time.sleep(2.0)
+
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'world',
+            default_value='default',
+            description='World to load: "default" for M3pro_world, "hospital" for AWS hospital world'
+        ),
+        OpaqueFunction(function=launch_setup),
     ])
